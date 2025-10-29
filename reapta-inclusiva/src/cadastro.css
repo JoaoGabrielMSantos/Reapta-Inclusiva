@@ -82,7 +82,7 @@ input::placeholder {
     margin-bottom: 0; 
 }
 
-button{
+.button{
     background-color: #FF9933; 
     color: white;
     padding: 14px 25px; 
