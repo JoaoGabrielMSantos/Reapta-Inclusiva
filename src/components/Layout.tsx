@@ -7,6 +7,7 @@ import {
   ShoppingBag, 
   Box,
   Users,
+  UserPlus,
   Building2,
   FileText,
   CreditCard,
@@ -18,13 +19,15 @@ interface LayoutProps {
   children: ReactNode;
 }
 
-const menuItems = [
-  { icon: LayoutDashboard, label: "Dashboard", path: "/" },
+  const menuItems = [
+  { icon: LayoutDashboard, label: "Dashboard", path: "/dashboard" },
   { icon: Package, label: "Estoque", path: "/estoque" },
   { icon: ShoppingCart, label: "Vendas", path: "/vendas" },
   { icon: ShoppingBag, label: "Compras", path: "/compras" },
   { icon: Box, label: "Produtos", path: "/produtos" },
   { icon: Users, label: "Clientes", path: "/clientes" },
+  { icon: Building2, label: "Fornecedores", path: "/fornecedores" },
+  { icon: UserPlus, label: "Cadastro", path: "/cadastro" },
 ];
 
 export const Layout = ({ children }: LayoutProps) => {
