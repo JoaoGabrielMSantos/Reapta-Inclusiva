@@ -60,7 +60,6 @@ export default function Login(): JSX.Element {
 
           <div className="flex items-center justify-between">
             <button type="submit" className="bg-primary text-white px-4 py-2 rounded-md">Entrar</button>
-            <Link to="/cadastro" className="text-sm text-primary hover:underline">Criar conta</Link>
           </div>
         </form>
       </Card>

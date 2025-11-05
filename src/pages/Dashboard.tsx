@@ -108,9 +108,7 @@ const Dashboard = () => {
           </Card>
         </div>
 
-        {/* Financial Metrics and Accounts Row */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Financial Metrics */}
           <Card className="p-6">
             <h3 className="text-lg font-semibold mb-4">Métricas Financeiras</h3>
             <div className="space-y-4">
@@ -131,7 +129,6 @@ const Dashboard = () => {
             </div>
           </Card>
 
-          {/* Accounts Receivable */}
           <Card className="p-6">
             <h3 className="text-lg font-semibold mb-4">Contas a Receber</h3>
             <div className="space-y-4">
@@ -146,7 +143,6 @@ const Dashboard = () => {
             </div>
           </Card>
 
-          {/* Top Clients */}
           <Card className="p-6">
             <h3 className="text-lg font-semibold mb-4">Top 4 Clientes</h3>
             <div className="space-y-3">

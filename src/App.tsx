@@ -24,14 +24,11 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          {/* root: always show login first */}
           <Route path="/" element={<Navigate to="/login" replace />} />
 
-          {/* public routes */}
           <Route path="/login" element={<Login />} />
           <Route path="/cadastro" element={<Cadastro />} />
 
-          {/* protected routes */}
           <Route path="/dashboard" element={<RequireAuth><Dashboard /></RequireAuth>} />
           <Route path="/estoque" element={<RequireAuth><Estoque /></RequireAuth>} />
           <Route path="/vendas" element={<RequireAuth><Vendas /></RequireAuth>} />

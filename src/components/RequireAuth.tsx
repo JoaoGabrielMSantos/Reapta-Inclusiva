@@ -6,7 +6,6 @@ export function RequireAuth({ children }: { children: JSX.Element }) {
   const isAuth = typeof window !== 'undefined' && localStorage.getItem('auth') === 'true';
 
   if (!isAuth) {
-    // redirect to login and preserve the location the user was trying to go to
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
