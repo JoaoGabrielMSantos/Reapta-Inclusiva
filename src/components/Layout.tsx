@@ -27,6 +27,7 @@ interface LayoutProps {
   { icon: Box, label: "Produtos", path: "/produtos" },
   { icon: Users, label: "Clientes", path: "/clientes" },
   { icon: Building2, label: "Fornecedores", path: "/fornecedores" },
+  { icon: FileText, label: "Uploads", path: "/uploads" },
   { icon: UserPlus, label: "Cadastro", path: "/cadastro" },
 ];
 
@@ -35,7 +36,6 @@ export const Layout = ({ children }: LayoutProps) => {
 
   return (
     <div className="flex min-h-screen bg-background">
-      {/* Sidebar */}
       <aside className="w-64 bg-[hsl(var(--sidebar-background))] text-[hsl(var(--sidebar-foreground))] fixed h-full overflow-y-auto">
         <div className="p-6">
           <h1 className="text-xl font-bold">REAPTA INCLUSIVA</h1>
@@ -62,8 +62,6 @@ export const Layout = ({ children }: LayoutProps) => {
           })}
         </nav>
       </aside>
-
-      {/* Main Content */}
       <main className="ml-64 flex-1 p-8">
         <div className="max-w-7xl mx-auto">
           {children}

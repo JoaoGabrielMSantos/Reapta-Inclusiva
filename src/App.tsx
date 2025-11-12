@@ -13,6 +13,7 @@ import Produtos from "./pages/Produtos";
 import Clientes from "./pages/Clientes";
 import Cadastro from "./pages/Cadastro";
 import Fornecedores from "./pages/Fornecedores";
+import Atualizacao from "./pages/Atualizacao";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -36,6 +37,7 @@ const App = () => (
           <Route path="/produtos" element={<RequireAuth><Produtos /></RequireAuth>} />
           <Route path="/clientes" element={<RequireAuth><Clientes /></RequireAuth>} />
           <Route path="/fornecedores" element={<RequireAuth><Fornecedores /></RequireAuth>} />
+          <Route path="/uploads" element={<RequireAuth><Atualizacao /></RequireAuth>} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>
