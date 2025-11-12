@@ -8,7 +8,6 @@ export default function Login(): JSX.Element {
   const [error, setError] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
-  // default redirect after login should be the protected dashboard
   const from = (location.state as any)?.from?.pathname || '/dashboard';
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -19,12 +18,9 @@ export default function Login(): JSX.Element {
       return;
     }
 
-    // Simula autenticação: aqui você pode chamar sua API
-    // Salva um flag simples no localStorage
     localStorage.setItem('auth', 'true');
     localStorage.setItem('nFuncionario', nFuncionario);
 
-    // Redireciona para onde o usuário veio (ou /)
     navigate(from, { replace: true });
   };
 
@@ -33,7 +29,6 @@ export default function Login(): JSX.Element {
       <Card className="w-full max-w-md p-8">
         <h1 className="text-2xl font-bold mb-2">Acesso</h1>
         <p className="text-sm text-muted-foreground mb-6">Entre com seu Nº Funcionário e senha</p>
-
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-sm font-medium mb-1">Nº Funcionário</label>
@@ -44,7 +39,6 @@ export default function Login(): JSX.Element {
               placeholder="0001"
             />
           </div>
-
           <div>
             <label className="block text-sm font-medium mb-1">Senha</label>
             <input
@@ -55,9 +49,7 @@ export default function Login(): JSX.Element {
               placeholder="Sua senha"
             />
           </div>
-
           {error && <div className="text-sm text-red-600">{error}</div>}
-
           <div className="flex items-center justify-between">
             <button type="submit" className="bg-primary text-white px-4 py-2 rounded-md">Entrar</button>
           </div>

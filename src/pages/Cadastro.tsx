@@ -30,7 +30,6 @@ export default function Cadastro(): JSX.Element {
       return;
     }
 
-    // Simular persistência: armazenar usuários no localStorage
     try {
       const raw = localStorage.getItem('users');
       const users = raw ? JSON.parse(raw) : [];
@@ -44,7 +43,6 @@ export default function Cadastro(): JSX.Element {
       users.push(newUser);
       localStorage.setItem('users', JSON.stringify(users));
 
-      // navegar para login
       navigate('/login');
     } catch (err) {
       setError('Erro ao salvar usuário.');
@@ -58,7 +56,6 @@ export default function Cadastro(): JSX.Element {
         <Card className="w-full max-w-2xl p-6">
           <h1 className="text-2xl font-bold mb-2">Cadastro de Funcionário</h1>
           <p className="text-sm text-muted-foreground mb-4">Crie uma conta para o funcionário</p>
-
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <Label>Cargo</Label>
@@ -73,12 +70,10 @@ export default function Cadastro(): JSX.Element {
                 <option>Outro</option>
               </select>
             </div>
-
             <div>
               <Label>Nº Funcionário</Label>
               <Input value={nFuncionario} onChange={(e) => setNFuncionario(e.target.value)} placeholder="0001" />
             </div>
-
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <Label>Senha</Label>
@@ -89,9 +84,7 @@ export default function Cadastro(): JSX.Element {
                 <Input type="password" value={confirmaSenha} onChange={(e) => setConfirmaSenha(e.target.value)} placeholder="Confirme a senha" />
               </div>
             </div>
-
             {error && <div className="text-sm text-red-600">{error}</div>}
-
             <div className="flex items-center justify-end">
               <Button type="submit">Cadastrar</Button>
             </div>

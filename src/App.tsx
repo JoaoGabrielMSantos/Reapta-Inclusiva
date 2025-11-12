@@ -26,10 +26,8 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Navigate to="/login" replace />} />
-
           <Route path="/login" element={<Login />} />
           <Route path="/cadastro" element={<Cadastro />} />
-
           <Route path="/dashboard" element={<RequireAuth><Dashboard /></RequireAuth>} />
           <Route path="/estoque" element={<RequireAuth><Estoque /></RequireAuth>} />
           <Route path="/vendas" element={<RequireAuth><Vendas /></RequireAuth>} />
@@ -38,7 +36,6 @@ const App = () => (
           <Route path="/clientes" element={<RequireAuth><Clientes /></RequireAuth>} />
           <Route path="/fornecedores" element={<RequireAuth><Fornecedores /></RequireAuth>} />
           <Route path="/uploads" element={<RequireAuth><Atualizacao /></RequireAuth>} />
-
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

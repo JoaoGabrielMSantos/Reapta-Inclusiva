@@ -56,7 +56,6 @@ export default function Fornecedores(): JSX.Element {
             <p className="text-sm text-muted-foreground">Lista de fornecedores com informações de contato e identificação</p>
           </div>
         </div>
-
         <Card className="p-6">
           <h3 className="text-lg font-semibold mb-4">Relatório de Fornecedores</h3>
           <div className="overflow-x-auto">

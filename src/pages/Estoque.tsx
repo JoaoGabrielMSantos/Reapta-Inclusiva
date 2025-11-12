@@ -28,7 +28,6 @@ const Estoque = () => {
           <h1 className="text-3xl font-bold mb-2">Gestão de Estoque</h1>
           <p className="text-muted-foreground">Controle e movimentação de produtos</p>
         </div>
-
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <MetricCard
             title="Total de Produtos"
@@ -51,7 +50,6 @@ const Estoque = () => {
             icon={<CheckCircle className="w-8 h-8 text-success" />}
           />
         </div>
-
         <Card className="p-6">
           <h3 className="text-lg font-semibold mb-4">Quantidade por Categoria</h3>
           <ResponsiveContainer width="100%" height={350}>
@@ -64,7 +62,6 @@ const Estoque = () => {
             </BarChart>
           </ResponsiveContainer>
         </Card>
-
         <Card className="p-6">
           <h3 className="text-lg font-semibold mb-4">Produtos com Estoque Baixo</h3>
           <div className="overflow-x-auto">

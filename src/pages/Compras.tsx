@@ -37,7 +37,6 @@ const Compras = () => {
           <h1 className="text-3xl font-bold mb-2">Gestão de Compras</h1>
           <p className="text-muted-foreground">Controle de compras e fornecedores</p>
         </div>
-
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <MetricCard
             title="Total em Compras"
@@ -60,7 +59,6 @@ const Compras = () => {
             icon={<Building2 className="w-8 h-8" />}
           />
         </div>
-
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <Card className="p-6">
             <h3 className="text-lg font-semibold mb-4">Compras por Fornecedor</h3>
@@ -74,7 +72,6 @@ const Compras = () => {
               </BarChart>
             </ResponsiveContainer>
           </Card>
-
           <Card className="p-6">
             <h3 className="text-lg font-semibold mb-4">Compras Mensais</h3>
             <ResponsiveContainer width="100%" height={300}>
@@ -88,7 +85,6 @@ const Compras = () => {
             </ResponsiveContainer>
           </Card>
         </div>
-
         <Card className="p-6">
           <h3 className="text-lg font-semibold mb-4">Fornecedores - Resumo</h3>
           <div className="overflow-x-auto">

@@ -66,10 +66,7 @@ const Dashboard = () => {
             icon={<Package className="w-8 h-8" />}
           />
         </div>
-
-        {/* Charts Row */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Monthly Revenue Chart */}
           <Card className="p-6">
             <h3 className="text-lg font-semibold mb-4">Faturamento Mensal</h3>
             <ResponsiveContainer width="100%" height={300}>
@@ -82,8 +79,6 @@ const Dashboard = () => {
               </BarChart>
             </ResponsiveContainer>
           </Card>
-
-          {/* Sales by State Pie Chart */}
           <Card className="p-6">
             <h3 className="text-lg font-semibold mb-4">Vendas por Estado (Top 5)</h3>
             <ResponsiveContainer width="100%" height={300}>
@@ -107,7 +102,6 @@ const Dashboard = () => {
             </ResponsiveContainer>
           </Card>
         </div>
-
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <Card className="p-6">
             <h3 className="text-lg font-semibold mb-4">Métricas Financeiras</h3>
@@ -128,7 +122,6 @@ const Dashboard = () => {
               </div>
             </div>
           </Card>
-
           <Card className="p-6">
             <h3 className="text-lg font-semibold mb-4">Contas a Receber</h3>
             <div className="space-y-4">
@@ -142,7 +135,6 @@ const Dashboard = () => {
               </div>
             </div>
           </Card>
-
           <Card className="p-6">
             <h3 className="text-lg font-semibold mb-4">Top 4 Clientes</h3>
             <div className="space-y-3">

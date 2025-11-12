@@ -65,7 +65,6 @@ const Vendas = () => {
             icon={<Users className="w-8 h-8" />}
           />
         </div>
-
         <Card className="p-6">
           <h3 className="text-lg font-semibold mb-4">Faturamento por Estado</h3>
           <ResponsiveContainer width="100%" height={350}>
@@ -78,7 +77,6 @@ const Vendas = () => {
             </BarChart>
           </ResponsiveContainer>
         </Card>
-
         <Card className="p-6">
           <h3 className="text-lg font-semibold mb-4">Detalhamento de Vendas por Cliente</h3>
           <div className="overflow-x-auto">
