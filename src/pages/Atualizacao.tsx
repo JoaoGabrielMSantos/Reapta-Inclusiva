@@ -24,6 +24,7 @@ const Atualizacao = () => {
   const [batchFiles, setBatchFiles] = React.useState<FileList | null>(null);
   const [batchType, setBatchType] = React.useState<string>(REPORT_TYPES[0].key);
   const [loading, setLoading] = React.useState(false);
+  const fileRefs = React.useRef<Record<string, HTMLInputElement | null>>({});
 
   const handleFileChange = (key: string, file?: File) => {
     setIndividualFiles((prev) => ({ ...prev, [key]: file ?? null }));
@@ -34,7 +35,6 @@ const Atualizacao = () => {
     form.append("file", file);
     form.append("reportType", reportType);
 
-    // Endpoint backend presumido: /api/upload
     const res = await fetch("/api/upload", {
       method: "POST",
       body: form,
@@ -59,7 +59,9 @@ const Atualizacao = () => {
       setLoading(true);
       await uploadFile(file, typeKey);
       toast({ title: "Upload concluído", description: `Arquivo enviado: ${file.name}` });
-      handleFileChange(typeKey); // limpa o campo
+      handleFileChange(typeKey);
+      const input = fileRefs.current[typeKey];
+      if (input) input.value = "";
     } catch (err: any) {
       toast({ title: "Erro no upload", description: String(err.message || err) });
     } finally {
@@ -111,7 +113,8 @@ const Atualizacao = () => {
                   <input
                     id={`file-${r.key}`}
                     type="file"
-                    accept=".csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,application/json"
+                    accept=".csv"
+                    ref={(el) => (fileRefs.current[r.key] = el)}
                     onChange={(e) => handleFileChange(r.key, e.target.files?.[0])}
                     className="mb-3"
                   />
@@ -119,7 +122,15 @@ const Atualizacao = () => {
                     <Button onClick={() => handleIndividualUpload(r.key)} disabled={loading}>
                       Enviar
                     </Button>
-                    <Button variant="outline" onClick={() => handleFileChange(r.key)} disabled={loading}>
+                    <Button
+                      variant="outline"
+                      onClick={() => {
+                        handleFileChange(r.key);
+                        const input = fileRefs.current[r.key];
+                        if (input) input.value = "";
+                      }}
+                      disabled={loading}
+                    >
                       Limpar
                     </Button>
                   </div>

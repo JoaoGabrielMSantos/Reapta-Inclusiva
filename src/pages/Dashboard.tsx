@@ -36,8 +36,6 @@ const Dashboard = () => {
           <h1 className="text-3xl font-bold mb-2">Dashboard Geral</h1>
           <p className="text-muted-foreground">Visão consolidada do negócio - Dados reais 2025</p>
         </div>
-
-        {/* Metrics Row */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <MetricCard
             title="Faturamento Total"
