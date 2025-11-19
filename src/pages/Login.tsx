@@ -8,7 +8,7 @@ export default function Login(): JSX.Element {
   const [error, setError] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
-  const from = (location.state as any)?.from?.pathname || '/dashboard';
+  const from = (location.state as any)?.from?.pathname || '/uploads';
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

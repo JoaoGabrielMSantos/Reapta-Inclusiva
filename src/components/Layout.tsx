@@ -19,7 +19,8 @@ interface LayoutProps {
   children: ReactNode;
 }
 
-  const menuItems = [
+const menuItems = [
+  { icon: FileText, label: "Uploads", path: "/uploads" },
   { icon: LayoutDashboard, label: "Dashboard", path: "/dashboard" },
   { icon: Package, label: "Estoque", path: "/estoque" },
   { icon: ShoppingCart, label: "Vendas", path: "/vendas" },
@@ -27,7 +28,6 @@ interface LayoutProps {
   { icon: Box, label: "Produtos", path: "/produtos" },
   { icon: Users, label: "Clientes", path: "/clientes" },
   { icon: Building2, label: "Fornecedores", path: "/fornecedores" },
-  { icon: FileText, label: "Uploads", path: "/uploads" },
   { icon: UserPlus, label: "Cadastro", path: "/cadastro" },
 ];
 
