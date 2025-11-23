@@ -28,7 +28,6 @@ const menuItems = [
   { icon: Box, label: "Produtos", path: "/produtos" },
   { icon: Users, label: "Clientes", path: "/clientes" },
   { icon: Building2, label: "Fornecedores", path: "/fornecedores" },
-  { icon: UserPlus, label: "Cadastro", path: "/cadastro" },
 ];
 
 export const Layout = ({ children }: LayoutProps) => {

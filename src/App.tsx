@@ -4,14 +4,12 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { RequireAuth } from "@/components/RequireAuth";
-import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Estoque from "./pages/Estoque";
 import Vendas from "./pages/Vendas";
 import Compras from "./pages/Compras";
 import Produtos from "./pages/Produtos";
 import Clientes from "./pages/Clientes";
-import Cadastro from "./pages/Cadastro";
 import Fornecedores from "./pages/Fornecedores";
 import Atualizacao from "./pages/Atualizacao";
 import NotFound from "./pages/NotFound";
@@ -25,9 +23,8 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Navigate to="/login" replace />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/cadastro" element={<Cadastro />} />
+          <Route path="/" element={<Navigate to="/uploads" replace />} />
+          <Route path="/uploads" element={<RequireAuth><Atualizacao /></RequireAuth>} />
           <Route path="/dashboard" element={<RequireAuth><Dashboard /></RequireAuth>} />
           <Route path="/estoque" element={<RequireAuth><Estoque /></RequireAuth>} />
           <Route path="/vendas" element={<RequireAuth><Vendas /></RequireAuth>} />
@@ -35,7 +32,6 @@ const App = () => (
           <Route path="/produtos" element={<RequireAuth><Produtos /></RequireAuth>} />
           <Route path="/clientes" element={<RequireAuth><Clientes /></RequireAuth>} />
           <Route path="/fornecedores" element={<RequireAuth><Fornecedores /></RequireAuth>} />
-          <Route path="/uploads" element={<RequireAuth><Atualizacao /></RequireAuth>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
