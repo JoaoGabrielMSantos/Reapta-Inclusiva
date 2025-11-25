@@ -3,7 +3,6 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { RequireAuth } from "@/components/RequireAuth";
 import Dashboard from "./pages/Dashboard";
 import Estoque from "./pages/Estoque";
 import Vendas from "./pages/Vendas";
@@ -24,14 +23,14 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Navigate to="/uploads" replace />} />
-          <Route path="/uploads" element={<RequireAuth><Atualizacao /></RequireAuth>} />
-          <Route path="/dashboard" element={<RequireAuth><Dashboard /></RequireAuth>} />
-          <Route path="/estoque" element={<RequireAuth><Estoque /></RequireAuth>} />
-          <Route path="/vendas" element={<RequireAuth><Vendas /></RequireAuth>} />
-          <Route path="/compras" element={<RequireAuth><Compras /></RequireAuth>} />
-          <Route path="/produtos" element={<RequireAuth><Produtos /></RequireAuth>} />
-          <Route path="/clientes" element={<RequireAuth><Clientes /></RequireAuth>} />
-          <Route path="/fornecedores" element={<RequireAuth><Fornecedores /></RequireAuth>} />
+          <Route path="/uploads" element={<Atualizacao />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/estoque" element={<Estoque />} />
+          <Route path="/vendas" element={<Vendas />} />
+          <Route path="/compras" element={<Compras />} />
+          <Route path="/produtos" element={<Produtos />} />
+          <Route path="/clientes" element={<Clientes />} />
+          <Route path="/fornecedores" element={<Fornecedores />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
