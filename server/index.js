@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import multer from 'multer';
 import path from 'path';
 import fs from 'fs/promises';
@@ -10,6 +11,11 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 3000;
 const DATA_DIR = path.resolve(__dirname, '..', 'data');
+
+// Habilita CORS. Em produção defina CORS_ORIGIN para o domínio do front (ex: https://meu-site.vercel.app).
+const CORS_ORIGIN = process.env.CORS_ORIGIN || '*';
+app.use(cors({ origin: CORS_ORIGIN, credentials: true }));
+app.options('*', cors());
 
 const upload = multer({ storage: multer.memoryStorage() });
 
