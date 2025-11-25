@@ -62,6 +62,22 @@ app.post('/api/upload', upload.single('file'), async (req, res) => {
 
 app.get('/api/health', (req, res) => res.json({ ok: true }));
 
+const clientDist = path.resolve(__dirname, '..', 'dist');
+
+app.use(express.static(clientDist));
+
+app.get('*', (req, res) => {
+  if (req.path.startsWith('/api/')) return res.status(404).send('Not Found');
+
+  const indexPath = path.join(clientDist, 'index.html');
+  return res.sendFile(indexPath, (err) => {
+    if (err) {
+      console.error('Error sending index.html:', err);
+      res.status(500).send('Erro ao servir o aplicativo');
+    }
+  });
+});
+
 app.listen(PORT, () => {
-  console.log(`Upload server running on http://localhost:${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
