@@ -30,12 +30,14 @@ const Atualizacao = () => {
     setIndividualFiles((prev) => ({ ...prev, [key]: file ?? null }));
   };
 
+  const API_BASE = import.meta.env.VITE_API_BASE || '';
+
   const uploadFile = async (file: File, reportType: string) => {
     const form = new FormData();
     form.append("file", file);
     form.append("reportType", reportType);
 
-    const res = await fetch("/api/upload", {
+    const res = await fetch(`${API_BASE}/api/upload`, {
       method: "POST",
       body: form,
     });
