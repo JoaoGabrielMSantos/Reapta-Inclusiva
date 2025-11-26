@@ -12,10 +12,27 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const DATA_DIR = path.resolve(__dirname, '..', 'data');
 
-// Habilita CORS. Em produção defina CORS_ORIGIN para o domínio do front (ex: https://meu-site.vercel.app).
-const CORS_ORIGIN = process.env.CORS_ORIGIN || '*';
-app.use(cors({ origin: CORS_ORIGIN, credentials: true }));
-app.options('*', cors());
+// implementação de CORS com origem configurável
+const CORS_ORIGIN = (process.env.CORS_ORIGIN || '*').trim();
+const allowedOrigins = CORS_ORIGIN === '*' ? [] : CORS_ORIGIN.split(',').map(s => s.trim()).filter(Boolean);
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+    if (CORS_ORIGIN === '*') return callback(null, true);
+    if (allowedOrigins.includes(origin)) return callback(null, true);
+    return callback(new Error('Not allowed by CORS'));
+  },
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'x-session-id'],
+  exposedHeaders: ['Content-Length', 'X-Kuma-Revision'],
+  // só permitir credenciais quando não for wildcard
+  credentials: CORS_ORIGIN !== '*',
+  maxAge: 600,
+};
+
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 
 const upload = multer({ storage: multer.memoryStorage() });
 
@@ -60,28 +77,24 @@ app.post('/api/upload', upload.single('file'), async (req, res) => {
       existed = false;
     }
 
-    // Allow client to provide upload timestamp; otherwise use server time
+    // Permitir que o cliente forneça o timestamp do upload; caso contrário, usar o horário do servidor
     let uploadTime = Date.now();
     try {
       if (req.body && req.body.uploadedAt) {
         const parsed = Date.parse(req.body.uploadedAt);
         if (!Number.isNaN(parsed)) uploadTime = parsed;
       }
-    } catch (e) {
-      // ignore and use server time
-    }
+    } catch (e) {}
 
-    // Only overwrite if file doesn't exist or the incoming upload is newer (by uploadedAt)
+    // Só sobrescrever se o arquivo não existir ou se o upload for mais recente
     let didWrite = false;
     if (!existed || uploadTime >= (existingMtime || 0)) {
       await fs.writeFile(destPath, req.file.buffer);
-      // try to set mtime to the upload time so future comparisons use it
+      // Ajustar o tempo de modificação do arquivo para corresponder ao uploadTime
       try {
         const seconds = Math.floor(uploadTime / 1000);
         await fs.utimes(destPath, seconds, seconds);
-      } catch (e) {
-        // ignore utimes errors
-      }
+      } catch (e) {}
       didWrite = true;
     }
 
