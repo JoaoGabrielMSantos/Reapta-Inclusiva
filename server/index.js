@@ -109,7 +109,7 @@ app.get('/api/health', (req, res) => res.json({ ok: true }));
 
 const clientDist = path.resolve(__dirname, '..', 'dist');
 
-// Expor a pasta de dados em /data para que o frontend possa buscar os CSVs
+// Expor a pasta de dados em /data para que o frontend possa buscar os CSV
 app.use('/data', express.static(DATA_DIR));
 
 app.use(express.static(clientDist));
