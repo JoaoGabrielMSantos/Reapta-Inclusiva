@@ -36,6 +36,12 @@ const Atualizacao = () => {
     const form = new FormData();
     form.append("file", file);
     form.append("reportType", reportType);
+    // include upload timestamp so server can decide whether to overwrite
+    try {
+      form.append('uploadedAt', new Date().toISOString());
+    } catch (e) {
+      // ignore
+    }
 
     const res = await fetch(`${API_BASE}/api/upload`, {
       method: "POST",

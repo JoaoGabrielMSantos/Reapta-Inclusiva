@@ -50,16 +50,42 @@ app.post('/api/upload', upload.single('file'), async (req, res) => {
     const destPath = path.join(DATA_DIR, safeName);
 
     let existed = false;
+    let existingMtime = null;
     try {
       await fs.access(destPath);
       existed = true;
+      const st = await fs.stat(destPath);
+      existingMtime = st.mtimeMs || st.ctimeMs || null;
     } catch (err) {
       existed = false;
     }
 
-    await fs.writeFile(destPath, req.file.buffer);
+    // Allow client to provide upload timestamp; otherwise use server time
+    let uploadTime = Date.now();
+    try {
+      if (req.body && req.body.uploadedAt) {
+        const parsed = Date.parse(req.body.uploadedAt);
+        if (!Number.isNaN(parsed)) uploadTime = parsed;
+      }
+    } catch (e) {
+      // ignore and use server time
+    }
 
-    return res.json({ ok: true, filename: safeName, overwritten: existed });
+    // Only overwrite if file doesn't exist or the incoming upload is newer (by uploadedAt)
+    let didWrite = false;
+    if (!existed || uploadTime >= (existingMtime || 0)) {
+      await fs.writeFile(destPath, req.file.buffer);
+      // try to set mtime to the upload time so future comparisons use it
+      try {
+        const seconds = Math.floor(uploadTime / 1000);
+        await fs.utimes(destPath, seconds, seconds);
+      } catch (e) {
+        // ignore utimes errors
+      }
+      didWrite = true;
+    }
+
+    return res.json({ ok: true, filename: safeName, overwritten: didWrite, existed, path: `/data/${safeName}`, uploadedAt: new Date(uploadTime).toISOString(), previousMtime: existingMtime ? new Date(existingMtime).toISOString() : null });
   } catch (err) {
     console.error('Erro no upload:', err);
     return res.status(500).send('Erro interno no servidor');
